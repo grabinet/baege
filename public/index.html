@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BaegeeDownloader - Video, Musik & File Downloader</title>
+<meta name="description" content="BaegeeDownloader: unduh video, musik, foto, dan file dari TikTok, YouTube, Instagram, Spotify, MediaFire dan banyak platform lain hanya dengan menempel link.">
+<meta name="author" content="tuyyi">
+<meta property="og:title" content="BaegeeDownloader">
+<meta property="og:description" content="Unduh video, musik, foto, dan file dari banyak platform hanya dengan menempel link.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="/icons/icon-512.png">
+<meta property="og:url" content="">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#0b141a">
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<script>addEventListener('beforeinstallprompt',function(e){e.preventDefault();window.__bip=e})</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" crossorigin="anonymous">
+<link rel="stylesheet" href="/css/style.min.css">
+<link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+<!-- Banner pasang / download aplikasi (paling atas; tersembunyi sampai user pernah menekan Download) -->
+<div id="install-banner" role="region" aria-label="Pasang aplikasi BaegeeDownloader" hidden>
+  <img class="ib-logo" src="/icons/icon-192.png" alt="" width="40" height="40">
+  <div class="ib-text"><strong>Pasang Aplikasi</strong><span id="bannerSub">Akses lebih cepat dari layar utama</span></div>
+  <button class="ib-btn" id="bannerInstallBtn" type="button"><i class="bi bi-download" aria-hidden="true"></i><span>Download aplikasi</span></button>
+  <button class="ib-close" id="bannerCloseBtn" type="button" aria-label="Tutup"><i class="bi bi-x-lg" aria-hidden="true"></i></button>
+</div>
+<!-- Drag & drop overlay -->
+<div id="drop-overlay" aria-hidden="true"><div class="drop-msg"><i class="bi bi-link-45deg me-2"></i>Lepas link di sini</div></div>
+
+<div class="preloader-overlay" id="preloader">
+  <div class="preloader-content">
+    <div class="brand-wrapper mb-4"><i class="bi bi-cloud-arrow-down-fill brand-icon"></i><h1 class="brand-title">BaegeeDownloader</h1></div>
+    <div class="loader-track"><div class="bar" id="preBar" style="width:0%"></div></div>
+    <span class="loading-text">Loading assets...</span>
+  </div>
+</div>
+
+<nav class="navbar fixed-top py-3" id="mainNavbar">
+  <div class="container px-3">
+    <h1 class="main-title mb-0"><a href="/" class="text-decoration-none" style="color:inherit">BaegeeDownloader</a></h1>
+    <div class="d-flex align-items-center">
+      <div class="d-none d-md-flex align-items-center me-3">
+        <ul class="navbar-nav flex-row">
+          <li class="nav-item"><a class="nav-link px-2" href="#download" data-anchor="download">Download</a></li>
+          <li class="nav-item"><a class="nav-link px-2" href="#features" data-anchor="features">Platform</a></li>
+          <li class="nav-item"><a class="nav-link px-2" href="#faq" data-anchor="faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" role="switch" id="themeSwitch" checked>
+        <label class="form-check-label" for="themeSwitch" id="themeLabel">Dark</label>
+      </div>
+      <button class="navbar-toggler d-md-none ms-2" type="button" id="menuBtn" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+    </div>
+  </div>
+</nav>
+
+<div class="sidebar-overlay" id="overlay" hidden></div>
+<div class="offcanvas offcanvas-start" tabindex="-1" id="mobileSidebar">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title">BaegeeDownloader</h5>
+    <button type="button" class="btn-close" id="closeMenu" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <ul class="sidebar-nav">
+      <li><a class="sidebar-link" href="#download" data-anchor="download"><i class="bi bi-cloud-arrow-down-fill"></i><span>Download</span></a></li>
+      <li><a class="sidebar-link" href="#features" data-anchor="features"><i class="bi bi-gem"></i><span>Platform</span></a></li>
+      <li><a class="sidebar-link" href="#faq" data-anchor="faq"><i class="bi bi-question-circle-fill"></i><span>FAQ</span></a></li>
+    </ul>
+    <div class="sidebar-bottom mt-auto">
+      <p class="install-hint" id="installHint" role="status" hidden></p>
+      <button type="button" class="sidebar-footer" id="installBtn" aria-label="Pasang aplikasi BaegeeDownloader"><span>Pasang aplikasi</span><i class="bi bi-android2"></i></button>
+    </div>
+  </div>
+</div>
+
+<section id="download" class="container-fluid hero-section py-5">
+  <div class="container px-3 mb-4 content-wrapper">
+    <div class="row align-items-center justify-content-between">
+      <div class="col-md-9 col-lg-7 text-center text-md-start mx-auto mt-3 mb-2">
+        <p class="hero-tagline badge rounded-pill mb-3"><i class="bi bi-cloud-arrow-down-fill me-1"></i> Downloader</p>
+        <h1 class="hero-title fw-bold mb-3">Download Video, Musik &amp; File <br class="d-none d-lg-inline">Cukup Tempel Link</h1>
+        <p class="hero-subtitle lead mb-3">Mendukung <span id="count">20+</span> platform. Platform dikenali otomatis dari link, tanpa daftar dan tanpa ribet.</p>
+        <div class="hero-logos d-lg-none" id="heroLogos" aria-label="Platform populer"></div>
+
+        <div class="text-center text-md-start">
+          <div class="dl-tabs" role="tablist">
+            <button class="dl-tab active" data-mode="link" type="button" role="tab"><i class="bi bi-link-45deg me-1"></i>Tempel link</button>
+            <button class="dl-tab" data-mode="search" type="button" role="tab"><i class="bi bi-search me-1"></i>Cari judul</button>
+          </div>
+        </div>
+        <form id="form" class="search-form" autocomplete="off">
+          <select id="type" class="form-select type-select" aria-label="Jenis pencarian" hidden></select>
+          <div class="input-group">
+            <i class="bi bi-link search-icon" id="inputIcon"></i>
+            <input type="text" id="input" class="form-control search-input" placeholder="Paste link di sini" inputmode="url" required aria-label="Link atau kata kunci">
+            <button type="button" class="btn-clear" id="clear" aria-label="Paste link dari clipboard" title="Paste dari clipboard"><svg class="ic-paste" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4.5H8a3 3 0 0 0-3 3v11a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3v-11a3 3 0 0 0-3-3h-1"/><rect x="9" y="2.5" width="6" height="4" rx="1.4"/><path d="M8 11h8"/><path d="M8 14.5h8"/><path d="M8 18h4.5"/></svg><i class="bi bi-x-circle-fill ic-clear" aria-hidden="true"></i></button>
+            <button type="submit" class="btn btn-search" id="go" aria-label="Download"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v11"/><path d="m7 10 5 5 5-5"/><path d="M5 20h14"/></svg></button>
+          </div>
+        </form>
+        <p id="hint"></p>
+      </div>
+      <div class="col-md-5 col-lg-4 d-none d-lg-block text-center">
+        <div class="hero-orbit" id="heroOrbit" aria-hidden="true"><div class="orbit-core"><i class="bi bi-cloud-arrow-down-fill"></i></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container px-3 mb-3 mt-1">
+  <div id="status" aria-live="polite"></div>
+  <div id="results"></div>
+
+  <div class="row mt-4" id="features">
+    <div class="col-12 text-center">
+      <h2 class="main-title mb-3">20 Platform yang Didukung</h2>
+      <p class="section-subtitle">Semua dalam satu tempat — tempel link, pilih kualitas, lalu download.</p>
+    </div>
+    <div class="col-12">
+      <div class="logo-wall" id="platformWall" role="group" aria-label="Daftar platform yang didukung"></div>
+    </div>
+  </div>
+
+  <div class="row mt-4" id="faq">
+    <div class="col-12 text-center">
+      <h2 class="main-title mb-3">Pertanyaan Umum</h2>
+      <p class="section-subtitle">Jawaban singkat untuk hal yang sering ditanyakan.</p>
+    </div>
+    <div class="col-12 col-md-10 mx-auto">
+      <div class="accordion" id="faqAccordion"></div>
+    </div>
+  </div>
+
+  <div class="row mt-4" id="stats" hidden>
+    <div class="col-12 text-center">
+      <h2 class="main-title mb-3">Statistik</h2>
+    </div>
+    <div class="col-12 col-md-10 col-lg-8 mx-auto">
+      <div class="content-card stat-card rounded-3 p-3 p-md-4">
+        <div class="stat-totals">
+          <div class="stat-total"><i class="dot u"></i><div><div class="v" id="statUsers">0</div><div class="l">Pengguna</div></div></div>
+          <div class="stat-total"><i class="dot d"></i><div><div class="v" id="statDl">0</div><div class="l">Download sukses</div></div></div>
+        </div>
+        <div class="stat-chart" id="statChart"></div>
+        <div class="stat-readout" id="statReadout"></div>
+        <p class="stat-note" id="statNote"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="main-footer">
+  <div class="container px-3">
+    <p class="copyright-text mb-0">&copy; <span id="year"></span> BaegeeDownloader. All rights reserved.</p>
+    <p class="footer-contact mb-0"><a href="https://tuyyi.eu.cc" target="_blank" rel="noopener noreferrer">Contact</a></p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+<script src="/app.js" type="module"></script>
+</body>
+</html>
