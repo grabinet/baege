@@ -34,7 +34,7 @@ export function buildServer({ apiFn, stats, fetchImpl = fetch, secret = SECRET, 
   const apiBase = process.env.NEOXR_BASE || DEFAULT_BASE
   // cadangan: .my.id (dipakai bot lama). Bisa diubah/dimatikan lewat NEOXR_FALLBACK (isi "off" untuk mematikan).
   const apiFallback = process.env.NEOXR_FALLBACK === 'off' ? '' : process.env.NEOXR_FALLBACK || (apiBase === DEFAULT_BASE ? 'https://api.neoxr.my.id/api' : '')
-  apiFn ||= createApi({ base: apiBase, fallback: apiFallback, key: (process.env.API_KEY || 'baegedownload').trim() })
+  apiFn ||= createApi({ base: apiBase, fallback: apiFallback, key: (process.env.API_KEY || '').trim() })
 
   const hits = new Map()
   setInterval(() => { const n = Date.now(); for (const [k, v] of hits) if (v.reset < n) hits.delete(k) }, 60000).unref()
@@ -159,7 +159,7 @@ export function buildServer({ apiFn, stats, fetchImpl = fetch, secret = SECRET, 
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
-  if (!(process.env.API_KEY || 'baegedownload').trim()) console.warn('[!] API_KEY belum diisi di .env')
+  if (!(process.env.API_KEY || '').trim()) console.warn('[!] API_KEY belum diisi di .env')
   if (SECRET.length < 16) console.warn('[!] SIGN_SECRET kosong/pendek — isi string acak panjang di .env')
   buildServer().listen(PORT, () => console.log(`BaegeeDownloader jalan di http://localhost:${PORT}`))
 }
