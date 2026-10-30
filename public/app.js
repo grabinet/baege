@@ -145,26 +145,20 @@ document.addEventListener('visibilitychange', () => { if (!document.hidden && ge
 
 /* ---------- tema (dark/light seperti aslinya: body.light-mode) ---------- */
 const themeSw = $('#themeSwitch'), themeLabel = $('#themeLabel')
-const applyTheme = t => { document.body.classList.toggle('light-mode', t === 'light'); themeSw.checked = t === 'dark'; themeLabel.textContent = t === 'dark' ? 'Dark' : 'Light' }
+const applyTheme = t => { document.body.classList.toggle('light-mode', t === 'light'); if(themeSw) themeSw.checked = t === 'dark'; if(themeLabel) themeLabel.textContent = t === 'dark' ? 'Dark' : 'Light' }
 applyTheme(safeStore.get('theme') || 'dark')
-themeSw.addEventListener('change', () => { const t = themeSw.checked ? 'dark' : 'light'; safeStore.set('theme', t); applyTheme(t) })
+themeSw?.addEventListener('change', () => { const t = themeSw.checked ? 'dark' : 'light'; safeStore.set('theme', t); applyTheme(t) })
 
 /* ---------- navbar & sidebar ---------- */
 const nav = $('#mainNavbar')
 const onScroll = () => nav.classList.toggle('scrolled', scrollY > 10)
 addEventListener('scroll', onScroll, { passive: true }); onScroll()
 
-const sidebar = $('#mobileSidebar'), overlay = $('#overlay')
-let off = null
-const setMenu = open => {
-  overlay.hidden = !open
-  if (!off && window.bootstrap) off = new bootstrap.Offcanvas(sidebar, { backdrop: false, keyboard: true })
-  if (off) open ? off.show() : off.hide()
-}
-$('#menuBtn').onclick = () => setMenu(overlay.hidden)
-$('#closeMenu').onclick = overlay.onclick = () => setMenu(false)
+const menuBtn = $('#menuBtn'), sidebar = $('#mobileSidebar')
+const menuDropdown = menuBtn && window.bootstrap ? bootstrap.Dropdown.getOrCreateInstance(menuBtn) : null
+const setMenu = open => { if(!menuDropdown) return; open ? menuDropdown.show() : menuDropdown.hide() }
 
-$$('[data-anchor]').forEach(a => a.addEventListener('click', e => {
+$('[data-anchor]').forEach(a => a.addEventListener('click', e => {
   e.preventDefault(); setMenu(false)
   document.getElementById(a.dataset.anchor)?.scrollIntoView({ behavior: 'smooth' })
 }))
