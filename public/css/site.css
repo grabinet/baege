@@ -735,3 +735,18 @@ body,body.light-mode{
 @media(prefers-reduced-motion:reduce){
   #backToTop{transition:none!important}
 }
+
+/* Fine tune Font Awesome brand tiles and compact dropdown positioning */
+.logo-tile .fa-brands{font-size:18px;line-height:1;color:#10a875!important}
+@media(max-width:767.98px){
+  #mobileSidebar{bottom:auto!important}
+}
+.feature-card,.benefit-card{
+  background:rgba(255,255,255,.78);border:1px solid #e3eee8;border-radius:14px;
+  box-shadow:0 2px 10px rgba(15,23,42,.025);
+}
+.feature-card .feature-icon,.benefit-card .feature-icon,
+.feature-card>i,.benefit-card>i{
+  display:inline-grid;place-items:center;width:34px;height:34px;border-radius:11px;
+  color:#10a875;background:#effaf4;border:1px solid #d1fae5;font-size:14px;
+}
