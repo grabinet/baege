@@ -87,20 +87,26 @@
         <p class="hero-subtitle lead mb-3">Mendukung <span id="count">20+</span> platform. Platform dikenali otomatis dari link, tanpa daftar dan tanpa ribet.</p>
 
         <div class="text-center text-md-start">
-          <div class="dl-tabs" role="tablist">
-            <button class="dl-tab active" data-mode="link" type="button" role="tab"><i class="bi bi-link-45deg me-1"></i>Tempel link</button>
-            <button class="dl-tab" data-mode="search" type="button" role="tab"><i class="bi bi-search me-1"></i>Cari judul</button>
-          </div>
+
         </div>
         <form id="form" class="search-form" autocomplete="off">
-          <select id="type" class="form-select type-select" aria-label="Jenis pencarian" hidden></select>
           <div class="input-group">
             <i class="bi bi-link search-icon" id="inputIcon"></i>
-            <input type="text" id="input" class="form-control search-input" placeholder="Paste link di sini" inputmode="url" required aria-label="Link atau kata kunci">
+            <input type="text" id="input" class="form-control search-input" placeholder="Paste link di sini" inputmode="url" required aria-label="Tempel link">
             <button type="button" class="btn-clear" id="clear" aria-label="Paste link dari clipboard" title="Paste dari clipboard"><svg class="ic-paste" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4.5H8a3 3 0 0 0-3 3v11a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3v-11a3 3 0 0 0-3-3h-1"/><rect x="9" y="2.5" width="6" height="4" rx="1.4"/><path d="M8 11h8"/><path d="M8 14.5h8"/><path d="M8 18h4.5"/></svg><i class="bi bi-x-circle-fill ic-clear" aria-hidden="true"></i></button>
             <button type="submit" class="btn btn-search" id="go" aria-label="Download"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v11"/><path d="m7 10 5 5 5-5"/><path d="M5 20h14"/></svg></button>
           </div>
         </form>
+        <div class="hero-socials" aria-label="Platform yang didukung">
+          <span class="hero-social-icon" title="TikTok"><i class="fa-brands fa-tiktok"></i></span>
+          <span class="hero-social-icon" title="YouTube"><i class="fa-brands fa-youtube"></i></span>
+          <span class="hero-social-icon" title="Instagram"><i class="fa-brands fa-instagram"></i></span>
+          <span class="hero-social-icon" title="Facebook"><i class="fa-brands fa-facebook-f"></i></span>
+          <span class="hero-social-icon" title="X"><i class="fa-brands fa-x-twitter"></i></span>
+          <span class="hero-social-icon" title="Spotify"><i class="fa-brands fa-spotify"></i></span>
+          <span class="hero-social-icon" title="Pinterest"><i class="fa-brands fa-pinterest-p"></i></span>
+          <span class="hero-social-icon" title="Threads"><i class="fa-brands fa-threads"></i></span>
+        </div>
         <p id="hint"></p>
       </div>
     </div>
@@ -117,7 +123,7 @@
       <p class="section-subtitle">Jawaban singkat untuk hal yang sering ditanyakan.</p>
     </div>
     <div class="col-12 col-md-10 mx-auto">
-      <div class="accordion" id="faqAccordion"></div>
+      <div class="faq-feature-grid" id="faqAccordion"></div>
     </div>
   </div>
 
