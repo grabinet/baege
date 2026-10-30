@@ -336,67 +336,23 @@ async function copyText(text) {
   } catch { return false }
 }
 
-/* ---------- statistik: 2 garis (pengguna & download sukses) + angka total ---------- */
+/* ---------- statistik ringkas: angka total tanpa grafik ---------- */
 const nf = new Intl.NumberFormat('id-ID')
-const dfShort = new Intl.DateTimeFormat('id-ID', { day: 'numeric', month: 'short', timeZone: 'UTC' })
 const dfLong = new Intl.DateTimeFormat('id-ID', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' })
 const utc = d => new Date(d + 'T00:00:00Z')
-const compact = new Intl.NumberFormat('id-ID', { notation: 'compact', maximumFractionDigits: 1 })
-let statData = null
-
-function drawChart(s) {
-  const box = $('#statChart'), readout = $('#statReadout')
-  const W = Math.max(box.clientWidth, 240), H = W < 420 ? 180 : 220
-  const m = { l: 40, r: 14, t: 12, b: 24 }
-  const pw = W - m.l - m.r, ph = H - m.t - m.b
-  const ser = s.series, n = ser.length
-  const maxV = Math.max(1, ...ser.map(d => Math.max(d.users, d.downloads)))
-  const raw = maxV / 4, pow = 10 ** Math.floor(Math.log10(raw)), f = raw / pow
-  const step = Math.max(1, (f <= 1 ? 1 : f <= 2 ? 2 : f <= 5 ? 5 : 10) * pow), top = step * 4
-  const x = i => m.l + (n === 1 ? pw / 2 : (i / (n - 1)) * pw)
-  const y = v => m.t + ph - (v / top) * ph
-  const line = key => ser.map((d, i) => `${i ? 'L' : 'M'}${x(i).toFixed(1)},${y(d[key]).toFixed(1)}`).join('')
-  const grid = [0, 1, 2, 3, 4].map(k => `<line class="sgrid" x1="${m.l}" x2="${W - m.r}" y1="${y(k * step)}" y2="${y(k * step)}"/><text class="stick" x="${m.l - 6}" y="${y(k * step) + 3.5}" text-anchor="end">${compact.format(k * step)}</text>`).join('')
-  const xi = [0, Math.round((n - 1) / 2), n - 1].filter((v, i, a) => a.indexOf(v) === i)
-  const xl = xi.map(i => `<text class="stick" x="${x(i)}" y="${H - 6}" text-anchor="${i === 0 ? 'start' : i === n - 1 ? 'end' : 'middle'}">${dfShort.format(utc(ser[i].date))}</text>`).join('')
-  const last = ser[n - 1]
-  box.innerHTML = `<svg class="schart" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" role="img" aria-label="Grafik pengguna dan download sukses ${n} hari terakhir">
-    ${grid}${xl}
-    <path class="sline d" d="${line('downloads')}"/><path class="sline u" d="${line('users')}"/>
-    <circle class="sdot d" cx="${x(n - 1)}" cy="${y(last.downloads)}" r="4"/><circle class="sdot u" cx="${x(n - 1)}" cy="${y(last.users)}" r="4"/>
-    <g id="sHover" visibility="hidden"><line class="sguide" y1="${m.t}" y2="${m.t + ph}"/><circle class="sdot d" r="4"/><circle class="sdot u" r="4"/></g>
-    <rect id="sHit" x="${m.l}" y="${m.t}" width="${pw}" height="${ph}" fill="transparent"/>
-  </svg>`
-  const hov = $('#sHover'), [dotD, dotU] = hov.querySelectorAll('circle'), guide = hov.querySelector('line')
-  const idle = () => { hov.setAttribute('visibility', 'hidden'); readout.innerHTML = `${esc(dfShort.format(utc(last.date)))} (hari ini): <b>${nf.format(last.users)}</b> pengguna · <b>${nf.format(last.downloads)}</b> download sukses` }
-  const point = e => {
-    const r = $('#sHit').getBoundingClientRect()
-    const i = Math.min(n - 1, Math.max(0, Math.round(((e.clientX - r.left) / r.width) * (n - 1))))
-    const d = ser[i]
-    hov.setAttribute('visibility', 'visible'); guide.setAttribute('x1', x(i)); guide.setAttribute('x2', x(i))
-    dotU.setAttribute('cx', x(i)); dotU.setAttribute('cy', y(d.users)); dotD.setAttribute('cx', x(i)); dotD.setAttribute('cy', y(d.downloads))
-    readout.innerHTML = `${esc(dfShort.format(utc(d.date)))}: <b>${nf.format(d.users)}</b> pengguna · <b>${nf.format(d.downloads)}</b> download sukses`
-  }
-  const hit = $('#sHit')
-  hit.addEventListener('pointermove', point); hit.addEventListener('pointerdown', point)
-  hit.addEventListener('pointerleave', idle); hit.addEventListener('pointerup', e => { if (e.pointerType !== 'mouse') setTimeout(idle, 1800) })
-  idle()
-}
 
 function renderStats(s) {
-  statData = s
-  $('#statUsers').textContent = nf.format(s.users)
-  $('#statDl').textContent = nf.format(s.downloads)
-  $('#statNote').innerHTML = `${s.since ? `Dihitung sejak ${esc(dfLong.format(utc(s.since)))} · ` : ''}Garis menunjukkan total ${s.series.length} hari terakhir.`
-    + (s.persistent ? '' : '<span class="stat-warn">Data masih disimpan di memori server dan akan hilang saat server restart. Hubungkan Upstash Redis agar statistik permanen.</span>')
+  $('#statUsers').textContent = nf.format(s.users || 0)
+  $('#statDl').textContent = nf.format(s.downloads || 0)
   $('#stats').hidden = false
-  drawChart(s)
 }
 async function loadStats() {
-  try { const j = await (await fetch('/api/stats')).json(); if (j.status) renderStats(j) } catch {}
+  try {
+    const j = await (await fetch('/api/stats')).json()
+    if (j.status) renderStats(j)
+  } catch {}
 }
 loadStats()
-{ let w = 0; addEventListener('resize', () => { const el = $('#statChart'); if (statData && el.clientWidth !== w) { w = el.clientWidth; drawChart(statData) } }, { passive: true }) }
 
 const ICON = { video: 'bi-film', audio: 'bi-music-note-beamed', image: 'bi-image', file: 'bi-file-earmark-arrow-down' }
 
