@@ -165,7 +165,7 @@ const menuBtn = $('#menuBtn'), sidebar = $('#mobileSidebar')
 const menuDropdown = menuBtn && window.bootstrap ? bootstrap.Dropdown.getOrCreateInstance(menuBtn) : null
 const setMenu = open => { if(!menuDropdown) return; open ? menuDropdown.show() : menuDropdown.hide() }
 
-$('[data-anchor]').forEach(a => a.addEventListener('click', e => {
+$$('[data-anchor]').forEach(a => a.addEventListener('click', e => {
   e.preventDefault(); setMenu(false)
   document.getElementById(a.dataset.anchor)?.scrollIntoView({ behavior: 'smooth' })
 }))
