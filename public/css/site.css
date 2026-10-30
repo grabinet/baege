@@ -899,3 +899,77 @@ body:not(.light-mode) .benefit-icon{
   .benefit-icon{width:33px;height:33px;flex-basis:33px}
   #features{margin-top:1.25rem!important}
 }
+
+
+/* === Desktop refinement: floating header, wide centered hero, single-row benefits === */
+@media (min-width:768px){
+  body{padding-top:88px!important}
+  #mainNavbar{
+    top:12px!important;left:24px!important;right:24px!important;width:auto!important;
+    padding:0!important;border:1px solid rgba(226,232,240,.8)!important;
+    border-radius:11px!important;box-shadow:0 8px 26px rgba(15,23,42,.07)!important;
+    overflow:visible;
+  }
+  #mainNavbar>.container{
+    width:100%!important;max-width:1440px!important;height:54px!important;
+    padding-left:22px!important;padding-right:22px!important;
+  }
+  .hero-section{
+    width:100%!important;padding:2.4rem clamp(20px,5vw,80px) 2.6rem!important;
+  }
+  .hero-section>.container{
+    width:100%!important;max-width:none!important;padding-left:0!important;padding-right:0!important;
+  }
+  .hero-section .row{width:100%;margin-left:0!important;margin-right:0!important;justify-content:center!important}
+  .hero-section .col-md-9.col-lg-7{
+    flex:0 0 100%!important;width:100%!important;max-width:100%!important;
+    margin-left:auto!important;margin-right:auto!important;text-align:center!important;
+  }
+  .hero-title{font-size:clamp(2rem,3.2vw,3.1rem)!important;max-width:1000px;margin-left:auto;margin-right:auto}
+  .hero-subtitle{font-size:1rem!important;max-width:760px;margin-left:auto!important;margin-right:auto!important}
+  .hero-socials{justify-content:center!important;margin:18px auto 14px!important}
+  .search-form{width:min(100%,820px)!important;margin:0 auto!important}
+  #hint{text-align:center}
+  #features{width:100%;margin-top:2.4rem!important}
+  #features>.col-md-10{flex:0 0 100%!important;width:100%!important;max-width:none!important}
+  .benefit-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:14px!important}
+  .benefit-card{height:100%;min-height:128px;padding:18px!important;align-items:flex-start}
+}
+@media (min-width:768px) and (max-width:1050px){
+  .benefit-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
+@media (min-width:768px){
+  #stats{margin-top:2rem!important}
+  #stats>.col-12:first-child{margin-bottom:.7rem}
+  #stats>.col-12:first-child .main-title{font-size:1.1rem!important;margin-bottom:.2rem!important}
+  .stat-totals{
+    display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:12px!important;width:min(100%,760px)!important;margin:0 auto!important;
+  }
+}
+.stat-totals{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px!important;margin:0 auto!important}
+.stat-number-card{
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  gap:12px!important;min-height:82px;padding:14px!important;
+  background:rgba(255,255,255,.72)!important;border:1px solid #e5eee8!important;
+  border-radius:12px!important;box-shadow:0 2px 10px rgba(15,23,42,.025)!important;
+}
+.stat-number-card .v{font-size:1.45rem!important;font-weight:650!important;line-height:1.1!important;color:#475569!important}
+.stat-number-card .l{font-size:.72rem!important;color:#89958e!important;margin-top:4px}
+.stat-number-icon{
+  width:35px;height:35px;flex:0 0 35px;display:grid;place-items:center;
+  border:1px solid #cceedd;border-radius:10px;background:#effaf4;color:#10a875;font-size:15px;
+}
+.stat-number-icon.downloads{background:#eff6ff;border-color:#dbeafe;color:#6093d5}
+body:not(.light-mode) .stat-number-card{background:rgba(255,255,255,.035)!important;border-color:rgba(16,185,129,.2)!important}
+body:not(.light-mode) .stat-number-card .v{color:var(--dark-text-color)!important}
+body:not(.light-mode) .stat-number-card .l{color:var(--dark-secondary-text-color)!important}
+body:not(.light-mode) .stat-number-icon{background:rgba(16,185,129,.1);border-color:rgba(16,185,129,.25);color:#55d6a0}
+body:not(.light-mode) .stat-number-icon.downloads{background:rgba(96,147,213,.1);border-color:rgba(96,147,213,.25);color:#83b4ed}
+@media(max-width:575.98px){
+  .stat-totals{gap:8px!important}
+  .stat-number-card{min-height:72px;padding:10px 8px!important;gap:8px!important;border-radius:10px!important}
+  .stat-number-card .v{font-size:1.15rem!important}
+  .stat-number-card .l{font-size:.65rem!important}
+  .stat-number-icon{width:30px;height:30px;flex-basis:30px;font-size:13px}
+}
