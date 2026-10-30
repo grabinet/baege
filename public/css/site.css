@@ -1026,3 +1026,47 @@ body:not(.light-mode) .stat-number-icon.downloads{background:rgba(96,147,213,.1)
   .stat-number-card .l{font-size:.64rem!important}
   .stat-number-icon{width:29px;height:29px;flex-basis:29px}
 }
+
+
+/* === Desktop: kartu keunggulan vertikal ala kartu paket hosting === */
+@media(min-width:768px){
+  .benefit-grid{
+    grid-template-columns:repeat(4,minmax(0,1fr))!important;
+    align-items:stretch!important;
+    gap:18px!important;
+  }
+  .benefit-card{
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:center!important;
+    justify-content:flex-start!important;
+    text-align:center!important;
+    min-height:245px!important;
+    height:100%!important;
+    padding:24px 18px 22px!important;
+    gap:15px!important;
+    border-radius:15px!important;
+    box-shadow:0 7px 22px rgba(15,23,42,.07)!important;
+    transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;
+  }
+  .benefit-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 12px 28px rgba(15,23,42,.11)!important;
+    border-color:#b8e5ca!important;
+  }
+  .benefit-icon{
+    width:54px!important;height:54px!important;flex:0 0 54px!important;
+    border-radius:15px!important;font-size:22px!important;
+  }
+  .benefit-copy{width:100%!important}
+  .benefit-copy h3{font-size:.95rem!important;margin:0 0 10px!important}
+  .benefit-copy p{font-size:.78rem!important;line-height:1.7!important}
+}
+@media(min-width:768px) and (max-width:1050px){
+  .benefit-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  .benefit-card{min-height:220px!important}
+}
+@media(prefers-reduced-motion:reduce){
+  .benefit-card{transition:none!important}
+  .benefit-card:hover{transform:none}
+}
