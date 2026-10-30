@@ -145,9 +145,16 @@ document.addEventListener('visibilitychange', () => { if (!document.hidden && ge
 
 /* ---------- tema (dark/light seperti aslinya: body.light-mode) ---------- */
 const themeSw = $('#themeSwitch'), themeLabel = $('#themeLabel')
-const applyTheme = t => { document.body.classList.toggle('light-mode', t === 'light'); if(themeSw) themeSw.checked = t === 'dark'; if(themeLabel) themeLabel.textContent = t === 'dark' ? 'Dark' : 'Light' }
+const themeSwDesktop = $('#themeSwitchDesktop'), themeLabelDesktop = $('#themeLabelDesktop')
+const applyTheme = t => {
+  document.body.classList.toggle('light-mode', t === 'light')
+  ;[themeSw, themeSwDesktop].forEach(sw => { if(sw) sw.checked = t === 'dark' })
+  ;[themeLabel, themeLabelDesktop].forEach(label => { if(label) label.textContent = t === 'dark' ? 'Dark' : 'Light' })
+}
 applyTheme(safeStore.get('theme') || 'dark')
-themeSw?.addEventListener('change', () => { const t = themeSw.checked ? 'dark' : 'light'; safeStore.set('theme', t); applyTheme(t) })
+const changeTheme = sw => { const t = sw.checked ? 'dark' : 'light'; safeStore.set('theme', t); applyTheme(t) }
+themeSw?.addEventListener('change', () => changeTheme(themeSw))
+themeSwDesktop?.addEventListener('change', () => changeTheme(themeSwDesktop))
 
 /* ---------- navbar & sidebar ---------- */
 const nav = $('#mainNavbar')
