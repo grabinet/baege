@@ -37,7 +37,10 @@ export const mono = name => `<b class="mono">${esc([...name.trim()][0] || '?').t
 /* satu ubin logo; `i` dipakai untuk jeda animasi masuk */
 export function tile(l, i = 0) {
   const style = l.bg ? `--bg:${l.bg};--fg:${l.fg || '#fff'}` : l.icon ? '--bg:#fff' : `--bg:hsl(${hue(l.name)} 55% 40%)`
-  const inner = l.path ? `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="${l.path}"/></svg>`
+  const brandIcons = {tiktok:'fa-tiktok',youtube:'fa-youtube',instagram:'fa-instagram',facebook:'fa-facebook-f',x:'fa-x-twitter',threads:'fa-threads',pinterest:'fa-pinterest-p',spotify:'fa-spotify',soundcloud:'fa-soundcloud'}
+  const brandIcon = brandIcons[l.id]
+  const inner = brandIcon ? `<i class="fa-brands ${brandIcon}" aria-hidden="true"></i>`
+    : l.path ? `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="${l.path}"/></svg>`
     : l.icon ? `<img src="${esc(l.icon)}" alt="" width="128" height="128" loading="lazy" decoding="async" referrerpolicy="no-referrer" data-name="${esc(l.name)}">`
     : mono(l.name)
   return `<span class="logo-tile logo-${esc(l.id || 'x')}" style="${style};--i:${i}" role="img" aria-label="${esc(l.name)}" title="${esc(l.name)}">${inner}</span>`
