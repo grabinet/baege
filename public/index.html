@@ -48,37 +48,31 @@
       <div class="d-none d-md-flex align-items-center me-3">
         <ul class="navbar-nav flex-row">
           <li class="nav-item"><a class="nav-link px-2" href="#download" data-anchor="download">Download</a></li>
-          <li class="nav-item"><a class="nav-link px-2" href="#features" data-anchor="features">Platform</a></li>
           <li class="nav-item"><a class="nav-link px-2" href="#faq" data-anchor="faq">FAQ</a></li>
         </ul>
       </div>
-      <div class="form-check form-switch">
-        <input class="form-check-input" type="checkbox" role="switch" id="themeSwitch" checked>
-        <label class="form-check-label" for="themeSwitch" id="themeLabel">Dark</label>
+      <div class="dropdown">
+        <button class="navbar-toggler d-md-none" type="button" id="menuBtn" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false" aria-label="Buka menu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="dropdown-menu dropdown-menu-end" id="mobileSidebar" aria-labelledby="menuBtn">
+          <a class="dropdown-item sidebar-link" href="#download" data-anchor="download"><i class="bi bi-cloud-arrow-down-fill"></i><span>Download</span></a>
+          <a class="dropdown-item sidebar-link" href="#faq" data-anchor="faq"><i class="bi bi-question-circle-fill"></i><span>Pertanyaan Umum</span></a>
+          <div class="dropdown-item theme-menu-item">
+            <span class="theme-menu-label"><i class="bi bi-circle-half"></i> Tampilan</span>
+            <div class="form-check form-switch mb-0">
+              <input class="form-check-input" type="checkbox" role="switch" id="themeSwitch" checked>
+              <label class="form-check-label" for="themeSwitch" id="themeLabel">Dark</label>
+            </div>
+          </div>
+          <div class="dropdown-item install-menu-item">
+            <button type="button" class="sidebar-footer" id="installBtn"><span>Pasang aplikasi</span><i class="bi bi-android2"></i></button>
+          </div>
+        </div>
       </div>
-      <button class="navbar-toggler d-md-none ms-2" type="button" id="menuBtn" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
     </div>
   </div>
 </nav>
-
-<div class="sidebar-overlay" id="overlay" hidden></div>
-<div class="offcanvas offcanvas-start" tabindex="-1" id="mobileSidebar">
-  <div class="offcanvas-header">
-    <h5 class="offcanvas-title">BaegeeDownloader</h5>
-    <button type="button" class="btn-close" id="closeMenu" aria-label="Close"></button>
-  </div>
-  <div class="offcanvas-body">
-    <ul class="sidebar-nav">
-      <li><a class="sidebar-link" href="#download" data-anchor="download"><i class="bi bi-cloud-arrow-down-fill"></i><span>Download</span></a></li>
-      <li><a class="sidebar-link" href="#features" data-anchor="features"><i class="bi bi-gem"></i><span>Platform</span></a></li>
-      <li><a class="sidebar-link" href="#faq" data-anchor="faq"><i class="bi bi-question-circle-fill"></i><span>FAQ</span></a></li>
-    </ul>
-    <div class="sidebar-bottom mt-auto">
-      <p class="install-hint" id="installHint" role="status" hidden></p>
-      <button type="button" class="sidebar-footer" id="installBtn" aria-label="Pasang aplikasi BaegeeDownloader"><span>Pasang aplikasi</span><i class="bi bi-android2"></i></button>
-    </div>
-  </div>
-</div>
 
 <section id="download" class="container-fluid hero-section py-5">
   <div class="container px-3 mb-4 content-wrapper">
@@ -117,16 +111,6 @@
   <div id="status" aria-live="polite"></div>
   <div id="results"></div>
 
-  <div class="row mt-4" id="features">
-    <div class="col-12 text-center">
-      <h2 class="main-title mb-3">20 Platform yang Didukung</h2>
-      <p class="section-subtitle">Semua dalam satu tempat — tempel link, pilih kualitas, lalu download.</p>
-    </div>
-    <div class="col-12">
-      <div class="logo-wall" id="platformWall" role="group" aria-label="Daftar platform yang didukung"></div>
-    </div>
-  </div>
-
   <div class="row mt-4" id="faq">
     <div class="col-12 text-center">
       <h2 class="main-title mb-3">Pertanyaan Umum</h2>
@@ -155,7 +139,7 @@
   </div>
 </div>
 
-<footer class="main-footer">
+<footer class="main-footer"><span class="footer-accent-line" aria-hidden="true"></span>
   <div class="container px-3">
     <p class="copyright-text mb-0">Made with <span aria-label="love" style="color:#10b981">&hearts;</span> Baege Downloader</p>
   </div>
