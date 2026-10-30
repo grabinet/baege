@@ -1327,3 +1327,84 @@ body:not(.light-mode) #backToTop{
     font-size:clamp(1.35rem,6vw,1.65rem)!important;
   }
 }
+
+
+/* ==========================================================
+   FINAL MENU FIX — default dark + dropdown responsif
+   ========================================================== */
+
+/* Dropdown mobile selalu selebar navbar/header */
+@media(max-width:767.98px){
+  #mainNavbar{position:fixed!important}
+  #mainNavbar>.container{position:static!important}
+  #mainNavbar .dropdown{position:static!important}
+  #mobileSidebar.dropdown-menu{
+    position:absolute!important;
+    top:calc(100% + 8px)!important;
+    left:0!important;right:0!important;
+    width:auto!important;min-width:0!important;max-width:none!important;
+    margin:0!important;
+    transform:none!important;
+    box-sizing:border-box!important;
+    border-radius:14px!important;
+  }
+}
+
+/* Dropdown dark: override warna default Bootstrap dan aturan light lama */
+body:not(.light-mode) #mobileSidebar.dropdown-menu{
+  --bs-dropdown-bg:#1b2a32;
+  --bs-dropdown-color:#dbe5e8;
+  --bs-dropdown-link-color:#c4d1d6;
+  --bs-dropdown-link-hover-color:#70e0b1;
+  --bs-dropdown-link-hover-bg:#243840;
+  --bs-dropdown-link-active-color:#70e0b1;
+  --bs-dropdown-link-active-bg:#243840;
+  --bs-dropdown-border-color:#354750;
+  background:#1b2a32!important;
+  color:#dbe5e8!important;
+  border:1px solid #354750!important;
+  box-shadow:0 12px 30px rgba(0,0,0,.32)!important;
+}
+body:not(.light-mode) #mobileSidebar .dropdown-item{
+  background:transparent!important;
+  color:#c4d1d6!important;
+  border-color:#30424a!important;
+}
+body:not(.light-mode) #mobileSidebar .dropdown-item:hover,
+body:not(.light-mode) #mobileSidebar .dropdown-item:focus{
+  background:#243840!important;
+  color:#70e0b1!important;
+}
+body:not(.light-mode) #mobileSidebar .theme-menu-item,
+body:not(.light-mode) #mobileSidebar .install-menu-item{
+  background:transparent!important;
+  color:#c4d1d6!important;
+}
+body:not(.light-mode) #mobileSidebar .theme-menu-label,
+body:not(.light-mode) #mobileSidebar .form-check-label,
+body:not(.light-mode) #mobileSidebar .sidebar-footer{
+  color:#c4d1d6!important;
+}
+body:not(.light-mode) #mobileSidebar .form-check-input{
+  background-color:#33464e!important;
+  border-color:#52666e!important;
+}
+body:not(.light-mode) #mobileSidebar .form-check-input:checked{
+  background-color:#10b981!important;
+  border-color:#10b981!important;
+}
+body:not(.light-mode) #mobileSidebar .sidebar-footer .bi{
+  color:#65d9a7!important;
+}
+
+/* Mode terang tetap mempertahankan dropdown terang */
+body.light-mode #mobileSidebar.dropdown-menu{
+  --bs-dropdown-bg:#fff;
+  --bs-dropdown-color:#41525d;
+  --bs-dropdown-link-color:#41525d;
+  --bs-dropdown-link-hover-color:#059669;
+  --bs-dropdown-link-hover-bg:#f0faf4;
+  background:#fff!important;
+  color:#41525d!important;
+  border:1px solid #e2e8f0!important;
+}
