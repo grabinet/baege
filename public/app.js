@@ -178,20 +178,17 @@ addEventListener('scroll', spy, { passive: true }); spy()
 
 /* ---------- FAQ (accordion gaya asli) ---------- */
 const FAQ_DATA = [
-  ['Platform apa saja yang didukung?', 'TikTok, Douyin, Instagram, Facebook, Twitter/X, Threads, CapCut, Pinterest, YouTube, Spotify, SoundCloud, Apple Music, MediaFire, Google Drive, Terabox, Pixeldrain, Sfile, KrakenFiles, Videy dan SnackVideo.'],
-  ['Bagaimana cara download?', 'Tempel link di kolom, lalu tekan tombol panah. Platform dikenali otomatis. Pilih format/kualitas yang muncul lalu tekan <strong>Download</strong>.'],
-  ['Bagaimana kalau hanya tahu judulnya?', 'Pindah ke tab <strong>Cari judul</strong>, pilih sumber (YouTube, Spotify, SoundCloud, Apple Music, atau APK), lalu ketik judulnya.'],
-  ['Download gagal atau link tidak jalan?', 'Pastikan link publik (bukan akun private) dan masih aktif. Link hasil download berlaku sekitar 30 menit — ulangi prosesnya bila kedaluwarsa.'],
-  ['Apakah legal?', 'Gunakan hanya untuk konten milikmu atau yang kamu punya izin untuk mengunduhnya. Hormati hak cipta pembuat konten.']
+  ['fa-solid fa-layer-group', 'Platform didukung', 'TikTok, YouTube, Instagram, Facebook, X, Threads, CapCut, Pinterest, Spotify, SoundCloud, Apple Music, dan berbagai layanan file hosting.'],
+  ['fa-solid fa-link', 'Cara download mudah', 'Cukup tempel link ke kolom, lalu tekan tombol download. Platform akan dikenali otomatis dan pilihan hasil download akan ditampilkan.'],
+  ['fa-solid fa-bolt', 'Proses cepat dan praktis', 'Tidak perlu membuat akun atau memasang aplikasi tambahan. Semua proses dimulai langsung dari browser.'],
+  ['fa-solid fa-circle-check', 'Link dan hasil download', 'Pastikan link bersifat publik dan masih aktif. Jika link hasil download kedaluwarsa, ulangi proses dari awal.'],
+  ['fa-solid fa-shield-halved', 'Gunakan dengan bijak', 'Unduh hanya konten milikmu atau konten yang memang kamu punya izin untuk mengunduhnya. Hormati hak cipta pembuat konten.']
 ]
-$('#faqAccordion').innerHTML = FAQ_DATA.map(([q, a], i) => `
-  <div class="accordion-item"><h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-i="${i}" aria-expanded="false">${q}</button></h2>
-  <div class="accordion-collapse" style="height:0;overflow:hidden;transition:height .25s ease"><div class="accordion-body">${a}</div></div></div>`).join('')
-$$('#faqAccordion .accordion-button').forEach(b => b.onclick = () => {
-  const open = b.classList.contains('collapsed')
-  $$('#faqAccordion .accordion-button').forEach(x => { x.classList.add('collapsed'); x.closest('.accordion-item').querySelector('.accordion-collapse').style.height = '0' })
-  if (open) { b.classList.remove('collapsed'); const c = b.closest('.accordion-item').querySelector('.accordion-collapse'); c.style.height = c.scrollHeight + 'px' }
-})
+$('#faqAccordion').innerHTML = FAQ_DATA.map(([icon, title, body]) => `
+  <article class="faq-feature-card">
+    <span class="faq-feature-icon"><i class="${icon}" aria-hidden="true"></i></span>
+    <div class="faq-feature-copy"><h3>${title}</h3><p>${body}</p></div>
+  </article>`).join('')
 $('#year').textContent = new Date().getFullYear()
 
 /* ---------- downloader ---------- */
@@ -217,23 +214,16 @@ fetch('/api/services').then(r => r.json()).then(j => {
   // platform baru di backend yang belum punya logo tetap tampil (monogram), tidak hilang diam-diam
   if (wall) j.services.filter(s => !isKnown(s.name)).forEach((s, i) => wall.insertAdjacentHTML('beforeend', tile({ id: s.id, name: s.name }, LOGOS.length + i)))
   $('#count').textContent = wall ? wall.children.length : j.services.length
-  typeSel.innerHTML = j.searches.map(s => `<option value="${esc(s.id)}">${esc(s.label)}</option>`).join('')
 }).catch(() => {})
 
-const setMode = m => {
-  mode = m
-  $$('.dl-tab').forEach(x => x.classList.toggle('active', x.dataset.mode === m))
-  typeSel.hidden = m !== 'search'
-  input.placeholder = m === 'link' ? 'Paste link di sini' : 'Judul lagu / video / aplikasi'
-  input.inputMode = m === 'link' ? 'url' : 'text'
-  $('#inputIcon').className = m === 'link' ? 'bi bi-link search-icon' : 'bi bi-search search-icon'
+const setMode = () => {
+  mode = 'link'
+  input.placeholder = 'Tempel link di sini'
+  input.inputMode = 'url'
+  $('#inputIcon').className = 'bi bi-link search-icon'
 }
-$$('.dl-tab').forEach(b => b.onclick = async () => {
-  setMode(b.dataset.mode)
-  // fade transition saat ganti tab
-  await Promise.all([fadeArea(statusEl), fadeArea(results)])
-  hint.textContent = ''; setStatus(''); results.innerHTML = ''; input.focus()
-})
+setMode()
+
 input.addEventListener('input', () => {
   if (mode !== 'link') return
   const v = input.value.trim()
