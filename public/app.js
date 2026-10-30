@@ -169,27 +169,27 @@ $('[data-anchor]').forEach(a => a.addEventListener('click', e => {
   e.preventDefault(); setMenu(false)
   document.getElementById(a.dataset.anchor)?.scrollIntoView({ behavior: 'smooth' })
 }))
-const ids = ['download', 'features', 'faq']
+const ids = ['download', 'features']
 const spy = () => {
   let cur = ids[0]; for (const id of ids) { const el = document.getElementById(id); if (el && !el.hidden && el.getBoundingClientRect().top < 140) cur = id }
   $$('[data-anchor]').forEach(a => a.classList.toggle('router-link-exact-active', a.dataset.anchor === cur))
 }
 addEventListener('scroll', spy, { passive: true }); spy()
 
-/* ---------- FAQ (accordion gaya asli) ---------- */
-const FAQ_DATA = [
-  ['fa-solid fa-layer-group', 'Platform didukung', 'TikTok, YouTube, Instagram, Facebook, X, Threads, CapCut, Pinterest, Spotify, SoundCloud, Apple Music, dan berbagai layanan file hosting.'],
-  ['fa-solid fa-link', 'Cara download mudah', 'Cukup tempel link ke kolom, lalu tekan tombol download. Platform akan dikenali otomatis dan pilihan hasil download akan ditampilkan.'],
-  ['fa-solid fa-bolt', 'Proses cepat dan praktis', 'Tidak perlu membuat akun atau memasang aplikasi tambahan. Semua proses dimulai langsung dari browser.'],
-  ['fa-solid fa-circle-check', 'Link dan hasil download', 'Pastikan link bersifat publik dan masih aktif. Jika link hasil download kedaluwarsa, ulangi proses dari awal.'],
-  ['fa-solid fa-shield-halved', 'Gunakan dengan bijak', 'Unduh hanya konten milikmu atau konten yang memang kamu punya izin untuk mengunduhnya. Hormati hak cipta pembuat konten.']
+/* ---------- Keunggulan (konten frontend; alur downloader tidak diubah) ---------- */
+const BENEFIT_DATA = [
+  ['fa-solid fa-bolt', 'Proses Cepat', 'Proses download praktis langsung dari browser tanpa langkah yang berbelit.'],
+  ['fa-solid fa-link', 'Cukup Tempel Link', 'Tidak perlu mencari judul. Tempel tautan dan platform akan dikenali otomatis.'],
+  ['fa-solid fa-layer-group', 'Multi Platform', 'Mendukung berbagai platform video, musik, foto, dan layanan file hosting.'],
+  ['fa-solid fa-mobile-screen-button', 'Responsif', 'Tampilan nyaman digunakan melalui ponsel, tablet, maupun komputer.']
 ]
-$('#faqAccordion').innerHTML = FAQ_DATA.map(([icon, title, body]) => `
-  <article class="faq-feature-card">
-    <span class="faq-feature-icon"><i class="${icon}" aria-hidden="true"></i></span>
-    <div class="faq-feature-copy"><h3>${title}</h3><p>${body}</p></div>
+const benefitGrid = $('#benefitGrid')
+if (benefitGrid) benefitGrid.innerHTML = BENEFIT_DATA.map(([icon, title, body]) => `
+  <article class="benefit-card">
+    <span class="benefit-icon"><i class="${icon}" aria-hidden="true"></i></span>
+    <div class="benefit-copy"><h3>${title}</h3><p>${body}</p></div>
   </article>`).join('')
-$('#year').textContent = new Date().getFullYear()
+$('#year')?.textContent = new Date().getFullYear()
 
 /* ---------- downloader ---------- */
 const form = $('#form'), input = $('#input'), typeSel = $('#type'), go = $('#go'), statusEl = $('#status'), results = $('#results'), hint = $('#hint')
