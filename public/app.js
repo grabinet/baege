@@ -151,7 +151,7 @@ const applyTheme = t => {
   ;[themeSw, themeSwDesktop].forEach(sw => { if(sw) sw.checked = t === 'dark' })
   ;[themeLabel, themeLabelDesktop].forEach(label => { if(label) label.textContent = t === 'dark' ? 'Dark' : 'Light' })
 }
-applyTheme(safeStore.get('theme') || 'light')
+applyTheme(safeStore.get('theme') || 'dark')
 const changeTheme = sw => { const t = sw.checked ? 'dark' : 'light'; safeStore.set('theme', t); applyTheme(t) }
 themeSw?.addEventListener('change', () => changeTheme(themeSw))
 themeSwDesktop?.addEventListener('change', () => changeTheme(themeSwDesktop))
