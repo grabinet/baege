@@ -1,7 +1,7 @@
 /* Service worker BaegeeDownloader: syarat aplikasi bisa dipasang + halaman tetap terbuka saat offline.
    Permintaan /api/* tidak pernah disentuh (selalu langsung ke jaringan).
    Semua file jaringan-dulu: setelah update situs, HTML dan JS/CSS selalu pasangan versi yang sama. */
-const CACHE = 'zeta-v9'
+const CACHE = 'zeta-v10'
 const SHELL = ['/', '/css/site.css', '/app.js', '/logos.js', '/favicon.ico', '/icons/icon-192.png']
 
 self.addEventListener('install', e => {
