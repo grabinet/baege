@@ -1149,3 +1149,181 @@ body:not(.light-mode) #mainNavbar{
   background:rgba(32,44,51,.96)!important;
   border-color:var(--dark-border-color)!important;
 }
+
+
+/* ==========================================================
+   FINAL DARK MODE FIX — seluruh halaman ikut berganti tema
+   Hanya styling; tidak mengubah HTML, JavaScript, atau alur downloader.
+   ========================================================== */
+body:not(.light-mode){
+  background:#101a20!important;
+  color:#dbe5e8!important;
+  color-scheme:dark;
+}
+body:not(.light-mode) #mainNavbar{
+  background:rgba(24,36,43,.96)!important;
+  border-color:rgba(148,163,184,.18)!important;
+  box-shadow:0 8px 26px rgba(0,0,0,.24)!important;
+}
+body:not(.light-mode) #mainNavbar .main-title,
+body:not(.light-mode) #mainNavbar .nav-link,
+body:not(.light-mode) #mainNavbar .form-check-label{
+  color:#dbe5e8!important;
+}
+body:not(.light-mode) #mainNavbar .nav-link:hover{color:#55d6a0!important}
+body:not(.light-mode) #mainNavbar .form-check-input{
+  background-color:#33464e!important;border-color:#52666e!important;
+}
+body:not(.light-mode) #mainNavbar .form-check-input:checked{
+  background-color:#10b981!important;border-color:#10b981!important;
+}
+body:not(.light-mode) #mainNavbar .navbar-toggler{
+  background:rgba(16,185,129,.1)!important;border-color:rgba(85,214,160,.25)!important;
+}
+body:not(.light-mode) #mainNavbar .navbar-toggler-icon{
+  filter:brightness(0) invert(1)!important;
+}
+body:not(.light-mode) .hero-section{
+  background:#142129!important;color:#dbe5e8!important;
+  border-bottom:1px solid rgba(148,163,184,.16)!important;
+}
+body:not(.light-mode) .hero-title{color:#f1f5f7!important}
+body:not(.light-mode) .hero-subtitle{color:#a9b8bf!important}
+body:not(.light-mode) .hero-tagline{
+  background:rgba(16,185,129,.12)!important;color:#69dfad!important;
+  border-color:rgba(16,185,129,.24)!important;
+}
+body:not(.light-mode) .hero-social-icon{
+  background:rgba(16,185,129,.09)!important;
+  border-color:rgba(85,214,160,.28)!important;color:#65d9a7!important;
+}
+body:not(.light-mode) .hero-social-icon:hover{background:rgba(16,185,129,.17)!important}
+body:not(.light-mode) .search-form .input-group{
+  background:#1b2a32!important;border-color:#354750!important;
+  box-shadow:0 4px 16px rgba(0,0,0,.13)!important;
+}
+body:not(.light-mode) .search-form .input-group:focus-within{
+  border-color:#36bd8a!important;box-shadow:0 0 0 3px rgba(16,185,129,.13)!important;
+}
+body:not(.light-mode) .search-icon{color:#91a5ad!important}
+body:not(.light-mode) .search-input{color:#e5eef0!important}
+body:not(.light-mode) .search-input::placeholder{color:#82949c!important}
+body:not(.light-mode) .search-form .btn-search{
+  background:#173d32!important;color:#68dfad!important;border-left:1px solid #285646!important;
+}
+body:not(.light-mode) .search-form .btn-search:hover{background:#205441!important}
+body:not(.light-mode) .search-form .btn-clear{color:#9aadb4!important}
+body:not(.light-mode) #hint{color:#91a3aa!important}
+
+/* Section, hasil, kartu, dan statistik */
+body:not(.light-mode) #features,
+body:not(.light-mode) #stats{color:#dbe5e8!important}
+body:not(.light-mode) .main-title{color:#e7eff1!important}
+body:not(.light-mode) .section-subtitle{color:#91a3aa!important}
+body:not(.light-mode) .benefit-card,
+body:not(.light-mode) .stat-number-card,
+body:not(.light-mode) .content-card,
+body:not(.light-mode) .result-card,
+body:not(.light-mode) .stat-card{
+  background:#1a2931!important;border-color:#33464f!important;
+  color:#dbe5e8!important;box-shadow:0 4px 18px rgba(0,0,0,.14)!important;
+}
+body:not(.light-mode) .benefit-copy h3{color:#e0eaed!important}
+body:not(.light-mode) .benefit-copy p{color:#9aabb2!important}
+body:not(.light-mode) .benefit-icon{
+  background:rgba(16,185,129,.12)!important;
+  border-color:rgba(16,185,129,.28)!important;color:#65d9a7!important;
+}
+body:not(.light-mode) .stat-number-card .v{color:#e5eef0!important}
+body:not(.light-mode) .stat-number-card .l{color:#9aabb2!important}
+body:not(.light-mode) .stat-number-icon{
+  background:rgba(16,185,129,.12)!important;border-color:rgba(16,185,129,.28)!important;color:#65d9a7!important;
+}
+body:not(.light-mode) .stat-number-icon.downloads{
+  background:rgba(96,147,213,.13)!important;border-color:rgba(96,147,213,.28)!important;color:#8bbaf0!important;
+}
+body:not(.light-mode) .song-card,
+body:not(.light-mode) .history-item,
+body:not(.light-mode) .file-row{
+  background:#1b2a32!important;border-color:#354750!important;color:#dbe5e8!important;
+}
+body:not(.light-mode) .song-card:hover,
+body:not(.light-mode) .history-item:hover{background:#22343d!important;border-color:#45605f!important}
+body:not(.light-mode) .song-title,
+body:not(.light-mode) .history-item .hi-title,
+body:not(.light-mode) .result-title{color:#e5eef0!important}
+body:not(.light-mode) .song-meta,
+body:not(.light-mode) .history-item .hi-sub,
+body:not(.light-mode) .result-meta,
+body:not(.light-mode) .history-section h3{color:#9aabb2!important}
+body:not(.light-mode) .thumbnail-wrapper{background:#263942!important}
+body:not(.light-mode) .file-row .lbl{color:#dbe5e8!important}
+body:not(.light-mode) .file-row small{color:#9aabb2!important}
+body:not(.light-mode) .btn-custom-accent,
+body:not(.light-mode) .btn-primary{
+  background:#0f9f6e!important;border-color:#0f9f6e!important;color:#fff!important;
+}
+body:not(.light-mode) .btn-ghost{
+  background:#1b2a32!important;border-color:#40535c!important;color:#c4d1d6!important;
+}
+body:not(.light-mode) .btn-ghost:hover{background:#263942!important;color:#f1f5f7!important}
+body:not(.light-mode) .main-footer{
+  background:#121e25!important;border-color:#2b3d45!important;color:#91a3aa!important;
+}
+body:not(.light-mode) .copyright-text{color:#91a3aa!important}
+body:not(.light-mode) .accordion-item{
+  background:#1a2931!important;border-color:#354750!important;
+}
+body:not(.light-mode) .accordion-button{
+  background:#1a2931!important;color:#c4d1d6!important;
+}
+body:not(.light-mode) .accordion-button:not(.collapsed){
+  background:#20343a!important;color:#65d9a7!important;
+}
+body:not(.light-mode) .accordion-body{background:#1a2931!important;color:#a9b8bf!important}
+body:not(.light-mode) #mobileSidebar{
+  background:#1b2a32!important;border-color:#354750!important;
+  box-shadow:0 12px 30px rgba(0,0,0,.3)!important;
+}
+body:not(.light-mode) #mobileSidebar .dropdown-item,
+body:not(.light-mode) #mobileSidebar .theme-menu-label,
+body:not(.light-mode) #mobileSidebar .form-check-label,
+body:not(.light-mode) #mobileSidebar .sidebar-footer{color:#c4d1d6!important}
+body:not(.light-mode) #mobileSidebar .dropdown-item{border-color:#30424a!important}
+body:not(.light-mode) #mobileSidebar .dropdown-item:hover,
+body:not(.light-mode) #mobileSidebar .dropdown-item:active{background:#243840!important;color:#65d9a7!important}
+body:not(.light-mode) #mobileSidebar .sidebar-link i,
+body:not(.light-mode) #mobileSidebar .theme-menu-label i{color:#65d9a7!important}
+body:not(.light-mode) .preloader-overlay{background:#101a20!important}
+body:not(.light-mode) .brand-title{color:#e5eef0!important}
+body:not(.light-mode) .loading-text{color:#9aabb2!important}
+body:not(.light-mode) .loader-track,
+body:not(.light-mode) .line-loader{background:#33464f!important}
+body:not(.light-mode) .loader-track .bar,
+body:not(.light-mode) .line-loader::before{background:#10b981!important}
+body:not(.light-mode) #install-banner{
+  background:rgba(27,42,50,.97)!important;color:#dbe5e8!important;
+  border-color:#354750!important;box-shadow:0 4px 16px rgba(0,0,0,.22)!important;
+}
+body:not(.light-mode) #install-banner .ib-btn{
+  background:#263942!important;color:#dbe5e8!important;border-color:#40535c!important;
+}
+body:not(.light-mode) #install-banner .ib-close{color:#a9b8bf!important}
+body:not(.light-mode) #drop-overlay{background:rgba(16,185,129,.08)!important;border-color:#36bd8a!important}
+body:not(.light-mode) #drop-overlay .drop-msg{
+  background:#1b2a32!important;color:#dbe5e8!important;border-color:#40535c!important;
+}
+body:not(.light-mode) #backToTop{
+  background:#173d32!important;border-color:#28664d!important;color:#70e0b1!important;
+}
+
+/* Ukuran hero identik untuk light/dark agar tidak melonjak saat toggle */
+.hero-title,body.light-mode .hero-title,body:not(.light-mode) .hero-title{
+  font-size:clamp(1.45rem,3vw,2rem)!important;
+  line-height:1.2!important;
+}
+@media(max-width:575.98px){
+  .hero-title,body.light-mode .hero-title,body:not(.light-mode) .hero-title{
+    font-size:clamp(1.35rem,6vw,1.65rem)!important;
+  }
+}
