@@ -18,6 +18,7 @@
 <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
 <script>addEventListener('beforeinstallprompt',function(e){e.preventDefault();window.__bip=e})</script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
 <link rel="stylesheet" href="/css/style.min.css">
 <link rel="stylesheet" href="/css/site.css">
 </head>
@@ -156,11 +157,14 @@
 
 <footer class="main-footer">
   <div class="container px-3">
-    <p class="copyright-text mb-0">&copy; <span id="year"></span> Baege Downloader. All rights reserved.</p>
-    <p class="footer-contact mb-0"><a href="https://tuyyi.eu.cc" target="_blank" rel="noopener noreferrer">Contact</a></p>
+    <p class="copyright-text mb-0">Made with <span aria-label="love" style="color:#10b981">&hearts;</span> Baege Downloader</p>
   </div>
 </footer>
+<button id="backToTop" type="button" aria-label="Kembali ke atas" title="Kembali ke atas"><i class="fa-solid fa-arrow-up" aria-hidden="true"></i></button>
 
+<script>
+(()=>{const b=document.getElementById("backToTop");if(!b)return;const sync=()=>b.classList.toggle("visible",window.scrollY>280);window.addEventListener("scroll",sync,{passive:true});b.addEventListener("click",()=>window.scrollTo({top:0,behavior:"smooth"}));sync()})();
+</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 <script src="/app.js" type="module"></script>
 </body>
