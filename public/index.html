@@ -48,7 +48,7 @@
       <div class="d-none d-md-flex align-items-center me-3">
         <ul class="navbar-nav flex-row">
           <li class="nav-item"><a class="nav-link px-2" href="#download" data-anchor="download">Download</a></li>
-          <li class="nav-item"><a class="nav-link px-2" href="#faq" data-anchor="faq">FAQ</a></li>
+          <li class="nav-item"><a class="nav-link px-2" href="#features" data-anchor="features">Keunggulan</a></li>
         </ul>
         <div class="form-check form-switch ms-3 mb-0">
           <input class="form-check-input" type="checkbox" role="switch" id="themeSwitchDesktop" checked>
@@ -61,7 +61,7 @@
         </button>
         <div class="dropdown-menu dropdown-menu-end" id="mobileSidebar" aria-labelledby="menuBtn">
           <a class="dropdown-item sidebar-link" href="#download" data-anchor="download"><i class="bi bi-cloud-arrow-down-fill"></i><span>Download</span></a>
-          <a class="dropdown-item sidebar-link" href="#faq" data-anchor="faq"><i class="bi bi-question-circle-fill"></i><span>Pertanyaan Umum</span></a>
+          <a class="dropdown-item sidebar-link" href="#features" data-anchor="features"><i class="bi bi-stars"></i><span>Keunggulan</span></a>
           <div class="dropdown-item theme-menu-item">
             <span class="theme-menu-label"><i class="bi bi-circle-half"></i> Tampilan</span>
             <div class="form-check form-switch mb-0">
@@ -89,14 +89,6 @@
         <div class="text-center text-md-start">
 
         </div>
-        <form id="form" class="search-form" autocomplete="off">
-          <div class="input-group">
-            <i class="bi bi-link search-icon" id="inputIcon"></i>
-            <input type="text" id="input" class="form-control search-input" placeholder="Paste link di sini" inputmode="url" required aria-label="Tempel link">
-            <button type="button" class="btn-clear" id="clear" aria-label="Paste link dari clipboard" title="Paste dari clipboard"><svg class="ic-paste" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4.5H8a3 3 0 0 0-3 3v11a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3v-11a3 3 0 0 0-3-3h-1"/><rect x="9" y="2.5" width="6" height="4" rx="1.4"/><path d="M8 11h8"/><path d="M8 14.5h8"/><path d="M8 18h4.5"/></svg><i class="bi bi-x-circle-fill ic-clear" aria-hidden="true"></i></button>
-            <button type="submit" class="btn btn-search" id="go" aria-label="Download"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v11"/><path d="m7 10 5 5 5-5"/><path d="M5 20h14"/></svg></button>
-          </div>
-        </form>
         <div class="hero-socials" aria-label="Platform yang didukung">
           <span class="hero-social-icon" title="TikTok"><i class="fa-brands fa-tiktok"></i></span>
           <span class="hero-social-icon" title="YouTube"><i class="fa-brands fa-youtube"></i></span>
@@ -107,6 +99,15 @@
           <span class="hero-social-icon" title="Pinterest"><i class="fa-brands fa-pinterest-p"></i></span>
           <span class="hero-social-icon" title="Threads"><i class="fa-brands fa-threads"></i></span>
         </div>
+        <form id="form" class="search-form" autocomplete="off">
+          <div class="input-group">
+            <i class="bi bi-link search-icon" id="inputIcon"></i>
+            <input type="text" id="input" class="form-control search-input" placeholder="Paste link di sini" inputmode="url" required aria-label="Tempel link">
+            <button type="button" class="btn-clear" id="clear" aria-label="Paste link dari clipboard" title="Paste dari clipboard"><svg class="ic-paste" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4.5H8a3 3 0 0 0-3 3v11a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3v-11a3 3 0 0 0-3-3h-1"/><rect x="9" y="2.5" width="6" height="4" rx="1.4"/><path d="M8 11h8"/><path d="M8 14.5h8"/><path d="M8 18h4.5"/></svg><i class="bi bi-x-circle-fill ic-clear" aria-hidden="true"></i></button>
+            <button type="submit" class="btn btn-search" id="go" aria-label="Download"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v11"/><path d="m7 10 5 5 5-5"/><path d="M5 20h14"/></svg></button>
+          </div>
+        </form>
+
         <p id="hint"></p>
       </div>
     </div>
@@ -117,15 +118,15 @@
   <div id="status" aria-live="polite"></div>
   <div id="results"></div>
 
-  <div class="row mt-4" id="faq">
+  <section class="row mt-4" id="features" aria-labelledby="featuresTitle">
     <div class="col-12 text-center">
-      <h2 class="main-title mb-3">Pertanyaan Umum</h2>
-      <p class="section-subtitle">Jawaban singkat untuk hal yang sering ditanyakan.</p>
+      <h2 class="main-title mb-2" id="featuresTitle">Keunggulan BaegeeDownloader</h2>
+      <p class="section-subtitle">Download lebih praktis, cepat, dan nyaman dari satu tempat.</p>
     </div>
     <div class="col-12 col-md-10 mx-auto">
-      <div class="faq-feature-grid" id="faqAccordion"></div>
+      <div class="benefit-grid" id="benefitGrid"></div>
     </div>
-  </div>
+  </section>
 
   <div class="row mt-4" id="stats" hidden>
     <div class="col-12 text-center">
