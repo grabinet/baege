@@ -189,7 +189,8 @@ if (benefitGrid) benefitGrid.innerHTML = BENEFIT_DATA.map(([icon, title, body]) 
     <span class="benefit-icon"><i class="${icon}" aria-hidden="true"></i></span>
     <div class="benefit-copy"><h3>${title}</h3><p>${body}</p></div>
   </article>`).join('')
-$('#year')?.textContent = new Date().getFullYear()
+const yearEl = $('#year')
+if (yearEl) yearEl.textContent = new Date().getFullYear()
 
 /* ---------- downloader ---------- */
 const form = $('#form'), input = $('#input'), typeSel = $('#type'), go = $('#go'), statusEl = $('#status'), results = $('#results'), hint = $('#hint')
