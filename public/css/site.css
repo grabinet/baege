@@ -973,3 +973,56 @@ body:not(.light-mode) .stat-number-icon.downloads{background:rgba(96,147,213,.1)
   .stat-number-card .l{font-size:.65rem!important}
   .stat-number-icon{width:30px;height:30px;flex-basis:30px;font-size:13px}
 }
+
+
+/* === Final touch: kartu keunggulan tipis + statistik satu baris === */
+.benefit-card{
+  align-items:center!important;
+  gap:10px!important;
+  min-height:0!important;
+  padding:12px!important;
+  border-radius:12px!important;
+}
+.benefit-icon{
+  width:33px!important;
+  height:33px!important;
+  flex:0 0 33px!important;
+  border-radius:10px!important;
+}
+.benefit-copy h3{margin:0 0 3px!important}
+.benefit-copy p{font-size:.7rem!important;line-height:1.45!important}
+@media(max-width:575.98px){
+  .benefit-card{padding:12px!important;gap:10px!important}
+}
+@media(min-width:768px){
+  .benefit-card{min-height:0!important;padding:12px!important}
+}
+
+/* Urutan statistik: ikon > angka > keterangan, semuanya sejajar */
+.stat-number-card{
+  justify-content:flex-start!important;
+  gap:10px!important;
+}
+.stat-number-card>div{
+  display:flex!important;
+  align-items:baseline!important;
+  flex-wrap:nowrap!important;
+  gap:8px!important;
+  min-width:0;
+}
+.stat-number-card .v{
+  flex:0 0 auto;
+  font-size:1.35rem!important;
+}
+.stat-number-card .l{
+  margin:0!important;
+  white-space:nowrap;
+  font-size:.72rem!important;
+}
+@media(max-width:575.98px){
+  .stat-number-card{gap:8px!important;padding:10px 9px!important}
+  .stat-number-card>div{gap:6px!important}
+  .stat-number-card .v{font-size:1.1rem!important}
+  .stat-number-card .l{font-size:.64rem!important}
+  .stat-number-icon{width:29px;height:29px;flex-basis:29px}
+}
